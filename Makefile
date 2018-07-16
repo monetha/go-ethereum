@@ -38,6 +38,10 @@ lint:
 test:
 	go test -timeout 20s -race -v $(PKGS)
 
+.PHONY: cover
+cover:
+	./cover.sh $(PKGS)
+
 .PHONY: fmt
 fmt:
 	@echo "Formatting files..."
