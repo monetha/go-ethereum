@@ -1,4 +1,5 @@
 PKGS ?= $(shell glide novendor)
+BENCH_FLAGS ?= -benchmem
 
 .PHONY: all
 all: lint test
@@ -41,6 +42,11 @@ test:
 .PHONY: cover
 cover:
 	./cover.sh $(PKGS)
+
+.PHONY: bench
+BENCH ?= .
+bench:
+	$(foreach pkg,$(PKGS),go test -bench=$(BENCH) -run="^$$" $(BENCH_FLAGS) $(pkg);)
 
 .PHONY: fmt
 fmt:
