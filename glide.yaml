@@ -6,7 +6,9 @@ import:
   - common
   - contracts/chequebook
   - core/types
-- package: github.com/golang/lint
+- package: golang.org/x/lint
+  repo: https://github.com/golang/lint
+  vcs: git
   subpackages:
   - golint
 - package: golang.org/x/tools

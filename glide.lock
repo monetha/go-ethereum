@@ -1,5 +1,5 @@
-hash: f649f9a66323813e2b605e65ddae6bb55c141e89261cc0fb2801ceea901b36cd
-updated: 2018-07-16T13:02:47.802894912+03:00
+hash: 4d85609002ced85e2772f0cd87117409cd47ad73bbffa119bfea9671df4ce141
+updated: 2018-07-16T14:31:34.474832601+03:00
 imports:
 - name: github.com/aristanetworks/goarista
   version: 18a2f1dd52bb9abbc1e898439df06c74f28f63a4
@@ -56,10 +56,6 @@ imports:
   - trie
 - name: github.com/go-stack/stack
   version: 259ab82a6cad3992b4e21ff5cac294ccb06474bc
-- name: github.com/golang/lint
-  version: 06c8688daad7faa9da5a0c2f163a3d14aac986ca
-  subpackages:
-  - golint
 - name: github.com/golang/snappy
   version: 553a641470496b2327abcac10b36396bd98e45c9
 - name: github.com/hashicorp/golang-lru
@@ -93,6 +89,12 @@ imports:
   - pbkdf2
   - ripemd160
   - scrypt
+- name: golang.org/x/lint
+  version: 06c8688daad7faa9da5a0c2f163a3d14aac986ca
+  repo: https://github.com/golang/lint
+  vcs: git
+  subpackages:
+  - golint
 - name: golang.org/x/net
   version: d866cfc389cec985d6fda2859936a575a55a3ab6
   subpackages:

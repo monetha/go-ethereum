@@ -11,7 +11,7 @@ dependencies:
 	@echo "Installing goimports..."
 	go install ./vendor/golang.org/x/tools/cmd/goimports
 	@echo "Installing golint..."
-	go install ./vendor/github.com/golang/lint/golint
+	go install ./vendor/golang.org/x/lint/golint
 	@echo "Installing gosimple..."
 	go install ./vendor/honnef.co/go/tools/cmd/gosimple
 	@echo "Installing unused..."
