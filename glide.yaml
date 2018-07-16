@@ -1,0 +1,8 @@
+package: github.com/monetha/go-ethereum
+import:
+- package: github.com/ethereum/go-ethereum
+  version: ^1.8.12
+  subpackages:
+  - common
+  - contracts/chequebook
+  - core/types
