@@ -20,3 +20,4 @@ import:
   - cmd/simple
   - cmd/staticcheck
   - cmd/unused
+- package: github.com/kisielk/gotool

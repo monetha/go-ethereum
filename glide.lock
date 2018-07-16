@@ -1,5 +1,5 @@
-hash: 4d85609002ced85e2772f0cd87117409cd47ad73bbffa119bfea9671df4ce141
-updated: 2018-07-16T14:31:34.474832601+03:00
+hash: 70df60d1888ec09ce0f735ecd45f97a1269a6496de334b60eb36d7fc4a289f94
+updated: 2018-07-16T14:42:20.403676418+03:00
 imports:
 - name: github.com/aristanetworks/goarista
   version: 18a2f1dd52bb9abbc1e898439df06c74f28f63a4
@@ -62,6 +62,8 @@ imports:
   version: 0fb14efe8c47ae851c0034ed7a448854d3d34cf3
   subpackages:
   - simplelru
+- name: github.com/kisielk/gotool
+  version: 80517062f582ea3340cd4baf70e86d539ae7d84d
 - name: github.com/pborman/uuid
   version: e533369306653d193b93dae055f6083cbf8ba54f
 - name: github.com/rjeczalik/notify
