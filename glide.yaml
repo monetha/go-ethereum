@@ -6,3 +6,15 @@ import:
   - common
   - contracts/chequebook
   - core/types
+- package: github.com/golang/lint
+  subpackages:
+  - golint
+- package: golang.org/x/tools
+  subpackages:
+  - cmd/goimports
+- package: honnef.co/go/tools
+  version: ^2017.2.2
+  subpackages:
+  - cmd/simple
+  - cmd/staticcheck
+  - cmd/unused
