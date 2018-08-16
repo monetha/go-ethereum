@@ -3,8 +3,10 @@ package ethereum
 import (
 	"fmt"
 	"math/big"
+	"strings"
 
 	"github.com/ethereum/go-ethereum/common"
+	"github.com/ethereum/go-ethereum/core/types"
 )
 
 // TransactionStatus is receipt status of transaction.
@@ -65,6 +67,7 @@ type Transaction struct {
 	Value            *big.Int
 	ContractAddress  *common.Address
 	Status           *TransactionStatus
+	Logs             []*types.Log
 }
 
 func (t *Transaction) String() string {
@@ -102,6 +105,7 @@ func (t *Transaction) String() string {
 	Nonce:           %v
 	Value:           %#v
 	Status:          %v
+	Logs:            %v
 `,
 		t.Hash.String(),
 		t.BlockNumber,
@@ -117,5 +121,38 @@ func (t *Transaction) String() string {
 		t.Nonce,
 		t.Value,
 		status,
+		logsToString("	", t.Logs),
 	)
+}
+
+func logsToString(ident string, ls []*types.Log) string {
+	sb := strings.Builder{}
+
+	sb.WriteString("[")
+	anyLogs := false
+	for _, l := range ls {
+		anyLogs = true
+		sb.WriteString("\n")
+		sb.WriteString(ident)
+		sb.WriteString(ident)
+		sb.WriteString(fmt.Sprintf("Address: %v\n", l.Address.Hex()))
+
+		sb.WriteString(ident)
+		sb.WriteString(ident)
+		sb.WriteString(fmt.Sprintf("Topics:  %x\n", l.Topics))
+
+		sb.WriteString(ident)
+		sb.WriteString(ident)
+		sb.WriteString(fmt.Sprintf("Data:    %x\n", l.Data))
+
+		sb.WriteString(ident)
+		sb.WriteString(ident)
+		sb.WriteString(fmt.Sprintf("Removed: %v\n", l.Removed))
+	}
+	if anyLogs {
+		sb.WriteString(ident)
+	}
+	sb.WriteString("]")
+
+	return sb.String()
 }

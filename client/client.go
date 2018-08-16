@@ -129,6 +129,7 @@ func (c *Client) getBlock(ctx context.Context, method string, args ...interface{
 		// assigning receipt values to transaction fields
 		for i, rcpt := range receipts {
 			btxs[i].GasUsed = rcpt.GasUsed
+			btxs[i].Logs = rcpt.Logs
 			if rcpt.Status != nil {
 				btxs[i].Status = (*ethereum.TransactionStatus)(rcpt.Status)
 			}
@@ -286,6 +287,7 @@ type rpcReceipt struct {
 	Status          *uint
 	ContractAddress *common.Address
 	GasUsed         *big.Int
+	Logs            []*types.Log
 }
 
 func (r *rpcReceipt) UnmarshalJSON(input []byte) error {
@@ -293,6 +295,7 @@ func (r *rpcReceipt) UnmarshalJSON(input []byte) error {
 		Status          *hexutil.Uint   `json:"status"`
 		ContractAddress *common.Address `json:"contractAddress"`
 		GasUsed         *hexutil.Big    `json:"gasUsed"`
+		Logs            []*types.Log    `json:"logs"`
 	}
 	var dec Receipt
 	if err := json.Unmarshal(input, &dec); err != nil {
@@ -310,7 +313,9 @@ func (r *rpcReceipt) UnmarshalJSON(input []byte) error {
 	if dec.GasUsed == nil {
 		return errors.New("missing required field 'gasUsed'")
 	}
+
 	r.GasUsed = (*big.Int)(dec.GasUsed)
+	r.Logs = dec.Logs
 
 	return nil
 }
