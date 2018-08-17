@@ -1,5 +1,5 @@
 hash: 70df60d1888ec09ce0f735ecd45f97a1269a6496de334b60eb36d7fc4a289f94
-updated: 2018-07-16T14:42:20.403676418+03:00
+updated: 2018-08-17T10:09:56.829197359+03:00
 imports:
 - name: github.com/aristanetworks/goarista
   version: 18a2f1dd52bb9abbc1e898439df06c74f28f63a4
@@ -9,10 +9,12 @@ imports:
   version: 8cea3866d0f7fb12d567a20744942c0d078c7d15
   subpackages:
   - btcec
+- name: github.com/deckarep/golang-set
+  version: 504e848d77ea4752b3057b8fb46da0e7f746ccf3
 - name: github.com/edsrzf/mmap-go
   version: 0bce6a6887123b67a60366d2c9fe2dfb74289d2e
 - name: github.com/ethereum/go-ethereum
-  version: 37685930d953bcbe023f9bc65b135a8d8b8f1488
+  version: 225171a4bfcc16bd12a1906b1e0d43d0b18c353b
   subpackages:
   - accounts
   - accounts/abi
@@ -39,10 +41,10 @@ imports:
   - crypto/bn256
   - crypto/bn256/cloudflare
   - crypto/bn256/google
-  - crypto/randentropy
   - crypto/secp256k1
   - crypto/sha3
   - eth/filters
+  - ethclient
   - ethdb
   - event
   - log
@@ -111,8 +113,6 @@ imports:
   - cmd/goimports
   - go/ast/astutil
   - imports
-- name: gopkg.in/fatih/set.v0
-  version: 27c40922c40b43fe04554d8223a402af3ea333f3
 - name: gopkg.in/karalabe/cookiejar.v2
   version: 8dcd6a7f4951f6ff3ee9cbb919a06d8925822e57
   subpackages:
