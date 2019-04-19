@@ -2,12 +2,11 @@ package backend
 
 import (
 	"context"
-	"github.com/ethereum/go-ethereum/accounts/abi/bind"
 	"math/big"
 
 	"github.com/ethereum/go-ethereum"
+	"github.com/ethereum/go-ethereum/accounts/abi/bind"
 	"github.com/ethereum/go-ethereum/common"
-	"github.com/ethereum/go-ethereum/contracts/chequebook"
 	"github.com/ethereum/go-ethereum/core/types"
 )
 
@@ -26,12 +25,12 @@ type Backend interface {
 // PendingNonceAt and SendTransaction should be done atomically to have sequence of nonce without gaps (so that
 // nonce would be equal to number of transactions sent).
 type HandleNonceBackend struct {
-	inner        chequebook.Backend
+	inner        Backend
 	addressNonce map[common.Address]uint64
 }
 
 // NewHandleNonceBackend wraps backend and returns new instance of HandleNonceBackend.
-func NewHandleNonceBackend(inner chequebook.Backend, handleAddresses []common.Address) chequebook.Backend {
+func NewHandleNonceBackend(inner Backend, handleAddresses []common.Address) Backend {
 	addressNonce := make(map[common.Address]uint64, len(handleAddresses))
 	for _, address := range handleAddresses {
 		addressNonce[address] = uint64(0)
@@ -113,7 +112,7 @@ func (b *HandleNonceBackend) SendTransaction(ctx context.Context, tx *types.Tran
 }
 
 func (b *HandleNonceBackend) incrementNonce(tx *types.Transaction) {
-	from, err := types.Sender(types.HomesteadSigner{}, tx)
+	from, err := types.Sender(types.NewEIP155Signer(tx.ChainId()), tx)
 	if err != nil {
 		return // invalid sender
 	}
@@ -151,13 +150,21 @@ func (b *HandleNonceBackend) SubscribeFilterLogs(ctx context.Context, query ethe
 	return b.inner.SubscribeFilterLogs(ctx, query, ch)
 }
 
+// TransactionByHash checks the pool of pending transactions in addition to the
+// blockchain. The isPending return value indicates whether the transaction has been
+// mined yet. Note that the transaction may not be part of the canonical chain even if
+// it's not pending.
+func (b *HandleNonceBackend) TransactionByHash(ctx context.Context, txHash common.Hash) (tx *types.Transaction, isPending bool, err error) {
+	return b.inner.TransactionByHash(ctx, txHash)
+}
+
 type commiterRollbacker interface {
 	Commit()
 	Rollback()
 }
 
 type simBackend struct {
-	b  chequebook.Backend
+	b  Backend
 	cr commiterRollbacker
 }
 
@@ -203,6 +210,10 @@ func (b *simBackend) FilterLogs(ctx context.Context, query ethereum.FilterQuery)
 
 func (b *simBackend) SubscribeFilterLogs(ctx context.Context, query ethereum.FilterQuery, ch chan<- types.Log) (ethereum.Subscription, error) {
 	return b.b.SubscribeFilterLogs(ctx, query, ch)
+}
+
+func (b *simBackend) TransactionByHash(ctx context.Context, txHash common.Hash) (tx *types.Transaction, isPending bool, err error) {
+	return b.b.TransactionByHash(ctx, txHash)
 }
 
 func (b *simBackend) Commit() {
