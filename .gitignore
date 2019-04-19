@@ -36,5 +36,8 @@ _testmain.go
 # Gogland
 .idea/
 
+# Mac filesystem
+.DS_Store
+
 # Dependencies
 vendor/
