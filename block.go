@@ -29,7 +29,7 @@ type Block struct {
 	Hash         common.Hash
 	Miner        common.Address
 	Number       *big.Int
-	Timestamp    *big.Int
+	Timestamp    uint64
 	Transactions Transactions
 }
 
