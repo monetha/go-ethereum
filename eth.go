@@ -8,11 +8,11 @@ import (
 	"time"
 
 	"github.com/ethereum/go-ethereum"
+	"github.com/monetha/go-ethereum/backend"
 	"github.com/ethereum/go-ethereum/accounts/abi/bind"
+	"github.com/monetha/go-ethereum/log"
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/ethereum/go-ethereum/core/types"
-	"github.com/monetha/payment-go-sdk/eth/backend"
-	"github.com/monetha/payment-go-sdk/log"
 )
 
 // Eth simplifies some operations with the Ethereum network
@@ -30,7 +30,7 @@ func New(b backend.Backend, lf log.Fun) *Eth {
 	}
 }
 
-// NewSession creates an instance of Session
+// NewSession creates an instance of Sessionclear
 func (e *Eth) NewSession(key *ecdsa.PrivateKey) *Session {
 	transactOpts := bind.NewKeyedTransactor(key)
 	transactOpts.GasPrice = e.SuggestedGasPrice
