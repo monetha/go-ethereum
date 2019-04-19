@@ -20,7 +20,7 @@ func TestTransferer_Transfer(t *testing.T) {
 	auth := bind.NewKeyedTransactor(key)
 
 	alloc := core.GenesisAlloc{auth.From: {Balance: ether}}
-	sim := backends.NewSimulatedBackend(alloc)
+	sim := backends.NewSimulatedBackend(alloc, 10000000)
 	sim.Commit()
 
 	tr := Transferer{sim}
@@ -64,7 +64,7 @@ func TestTransferer_SuggestGasLimit(t *testing.T) {
 	auth := bind.NewKeyedTransactor(key)
 
 	alloc := core.GenesisAlloc{auth.From: {Balance: ether}}
-	sim := backends.NewSimulatedBackend(alloc)
+	sim := backends.NewSimulatedBackend(alloc, 10000000)
 	sim.Commit()
 
 	tr := Transferer{sim}

@@ -8,11 +8,11 @@ import (
 	"time"
 
 	"github.com/ethereum/go-ethereum"
-	"github.com/monetha/go-ethereum/backend"
 	"github.com/ethereum/go-ethereum/accounts/abi/bind"
-	"github.com/monetha/go-ethereum/log"
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/ethereum/go-ethereum/core/types"
+	"github.com/monetha/go-ethereum/backend"
+	"github.com/monetha/go-ethereum/log"
 )
 
 // Eth simplifies some operations with the Ethereum network

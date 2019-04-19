@@ -1,20 +1,24 @@
 hash: 70df60d1888ec09ce0f735ecd45f97a1269a6496de334b60eb36d7fc4a289f94
-updated: 2018-08-17T10:09:56.829197359+03:00
+updated: 2019-04-19T14:24:31.993219+03:00
 imports:
+- name: github.com/allegro/bigcache
+  version: e24eb225f15679bbe54f91bfa7da3b00e59b9768
+  subpackages:
+  - queue
 - name: github.com/aristanetworks/goarista
-  version: 18a2f1dd52bb9abbc1e898439df06c74f28f63a4
+  version: 55bc7be9dd319639e5b8f276d66d76dd006df2d1
   subpackages:
   - monotime
 - name: github.com/btcsuite/btcd
-  version: 8cea3866d0f7fb12d567a20744942c0d078c7d15
+  version: 6867ff32788a1beb9d148e414d7f84f50958f0d2
   subpackages:
   - btcec
 - name: github.com/deckarep/golang-set
-  version: 504e848d77ea4752b3057b8fb46da0e7f746ccf3
+  version: 699df6a3acf6867538e50931511e9dc403da108a
 - name: github.com/edsrzf/mmap-go
-  version: 0bce6a6887123b67a60366d2c9fe2dfb74289d2e
+  version: 904c4ced31cdffe19e971afa0b3d319ff06d9c72
 - name: github.com/ethereum/go-ethereum
-  version: 225171a4bfcc16bd12a1906b1e0d43d0b18c353b
+  version: 4bcc0a37ab70cb79b16893556cffdaad6974e7d8
   subpackages:
   - accounts
   - accounts/abi
@@ -26,6 +30,7 @@ imports:
   - common/hexutil
   - common/math
   - common/mclock
+  - common/prque
   - consensus
   - consensus/ethash
   - consensus/misc
@@ -42,7 +47,6 @@ imports:
   - crypto/bn256/cloudflare
   - crypto/bn256/google
   - crypto/secp256k1
-  - crypto/sha3
   - eth/filters
   - ethclient
   - ethdb
@@ -57,23 +61,25 @@ imports:
   - swarm/services/swap/swap
   - trie
 - name: github.com/go-stack/stack
-  version: 259ab82a6cad3992b4e21ff5cac294ccb06474bc
+  version: 2fee6af1a9795aafbe0253a0cfbdf668e1fb8a9a
 - name: github.com/golang/snappy
-  version: 553a641470496b2327abcac10b36396bd98e45c9
+  version: 2a8bb927dd31d8daada140a5d09578521ce5c36a
+- name: github.com/google/uuid
+  version: c2e93f3ae59f2904160ceaab466009f965df46d6
 - name: github.com/hashicorp/golang-lru
-  version: 0fb14efe8c47ae851c0034ed7a448854d3d34cf3
+  version: 7087cb70de9f7a8bc0a10c375cb0d2280a8edf9c
   subpackages:
   - simplelru
 - name: github.com/kisielk/gotool
   version: 80517062f582ea3340cd4baf70e86d539ae7d84d
 - name: github.com/pborman/uuid
-  version: e533369306653d193b93dae055f6083cbf8ba54f
+  version: 8b1b92947f46224e3b97bb1a3a5b0382be00d31e
 - name: github.com/rjeczalik/notify
-  version: e1801ee34d54c4bf45126ef51fe9750b4e42bee8
+  version: 629144ba06a1c6af28c1e42c228e3d42594ce081
 - name: github.com/rs/cors
-  version: feef513b9575b32f84bafa580aad89b011259019
+  version: 76f58f330d76a55c5badc74f6212e8a15e742c77
 - name: github.com/syndtr/goleveldb
-  version: 714f901b98fdb3aa954b4193d8cbd64a28d80cad
+  version: c3a204f8e96543bb0cc090385c001078f184fc46
   subpackages:
   - leveldb
   - leveldb/cache
@@ -88,35 +94,32 @@ imports:
   - leveldb/table
   - leveldb/util
 - name: golang.org/x/crypto
-  version: 1a580b3eff7814fc9b40602fd35256c63b50f491
+  version: df01cb2cc480549d72034218dd98bf97671450ac
   subpackages:
   - pbkdf2
   - ripemd160
   - scrypt
+  - sha3
 - name: golang.org/x/lint
-  version: 06c8688daad7faa9da5a0c2f163a3d14aac986ca
+  version: 959b441ac422379a43da2230f62be024250818b0
   repo: https://github.com/golang/lint
   vcs: git
   subpackages:
   - golint
 - name: golang.org/x/net
-  version: d866cfc389cec985d6fda2859936a575a55a3ab6
+  version: 1f3472d942ba824034fb77cab6a6cfc1bc8a2c3c
   subpackages:
   - websocket
 - name: golang.org/x/sys
-  version: 8b4580aae2a0dd0c231a45d3ccb8434ff533b840
+  version: f0ce4c0180bef7e9c51babed693a6e47fdd8962f
   subpackages:
+  - cpu
   - unix
+  - windows
 - name: golang.org/x/tools
-  version: 64890f4e2b733655fee5077a5435a8812404c3a3
+  version: 4796d4bd3df0a291c397154cd7d68f1290cf7deb
   subpackages:
   - cmd/goimports
-  - go/ast/astutil
-  - imports
-- name: gopkg.in/karalabe/cookiejar.v2
-  version: 8dcd6a7f4951f6ff3ee9cbb919a06d8925822e57
-  subpackages:
-  - collections/prque
 - name: gopkg.in/natefinch/npipe.v2
   version: c1b8fa8bdccecb0b8db834ee0b92fdbcfa606dd6
 - name: honnef.co/go/tools
