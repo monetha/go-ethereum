@@ -258,3 +258,7 @@ func (m *backendMock) FilterLogs(ctx context.Context, query ethereum.FilterQuery
 func (m *backendMock) SubscribeFilterLogs(ctx context.Context, query ethereum.FilterQuery, ch chan<- types.Log) (ethereum.Subscription, error) {
 	return nil, nil
 }
+
+func (m *backendMock) TransactionByHash(ctx context.Context, txHash common.Hash) (tx *types.Transaction, isPending bool, err error) {
+	return nil, false, nil
+}

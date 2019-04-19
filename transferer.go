@@ -1,7 +1,6 @@
 package ethereum
 
 import (
-	"context"
 	"errors"
 	"fmt"
 	"math/big"
@@ -87,11 +86,4 @@ func (t Transferer) Transfer(opts *bind.TransactOpts, to common.Address, input [
 		return nil, err
 	}
 	return signedTx, nil
-}
-
-func ensureContext(ctx context.Context) context.Context {
-	if ctx == nil {
-		return context.TODO()
-	}
-	return ctx
 }

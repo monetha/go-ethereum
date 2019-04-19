@@ -2,6 +2,7 @@ package backend
 
 import (
 	"context"
+	"github.com/ethereum/go-ethereum/accounts/abi/bind"
 	"math/big"
 
 	"github.com/ethereum/go-ethereum"
@@ -9,6 +10,13 @@ import (
 	"github.com/ethereum/go-ethereum/contracts/chequebook"
 	"github.com/ethereum/go-ethereum/core/types"
 )
+
+// Backend contains all methods required for the backend operations.
+type Backend interface {
+	bind.ContractBackend
+	ethereum.TransactionReader
+	BalanceAt(ctx context.Context, address common.Address, blockNum *big.Int) (*big.Int, error)
+}
 
 // HandleNonceBackend internally handles nonce of the given addresses. It still calls PendingNonceAt of
 // inner backend, but returns PendingNonceAt as a maximum of pending nonce in block-chain and internally stored nonce.
